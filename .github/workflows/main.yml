@@ -1,0 +1,25 @@
+name: Breakout Game
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 매일 자정에 실행
+  workflow_dispatch: # 수동 실행 버튼 활성화
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: akmami/github-activity-breakout@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 본인의 GitHub 아이디로 수정하세요
+          gh_username: goms7
+
+      - name: Push new gif
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Update Breakout Game" || exit 0
+          git push
