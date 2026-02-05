@@ -1,1 +1,1 @@
-![Breakout Game](github-breakout-dark.svg)
+![Breakout Game](dark.svg)
